@@ -1,0 +1,9 @@
+<h3 ng-if="ctl.found.length">Found {{ ctl.found.length }} items.</h3>
+<ol>
+	<li ng-repeat="item in ctl.found">
+	 <span class="label label-primary">{{ item.short_name }}</span>
+	  <strong>{{ item.name }}</strong>> {{ item.description }}
+	 <button class="btn btn-default btn-xs" ng-click="ctl.onRemove({index: $index});">Don't want this one!</button>
+	</li>
+</ol>
+<div class="404" style="display: none;">Nothing found!</div>
