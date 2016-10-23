@@ -1,0 +1,9 @@
+* price in small / large
+<ul>
+  <li ng-repeat="item in $ctrl.items"> 
+    <strong>{{ item.short_name }} - {{ item.name }}</strong>
+      {{ item.price_small || '-' }} &yen; / {{ item.price_large || '-' }} &yen;
+    </br>
+    {{ item.description }}</br>
+  </li>
+</ul>
