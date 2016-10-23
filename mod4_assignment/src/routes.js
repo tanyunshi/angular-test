@@ -26,10 +26,7 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
 		controller: 'categoriesController as categoryList',
 		resolve: {
 			items: ['MenuService', function(MenuService) {
-				return MenuService.getMenuCategories()
-				.then(function (response){
-					return response['data'];
-				});
+				return MenuService.getMenuCategories();
 			}]
 		}
 	})
@@ -42,18 +39,10 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
 		resolve: {
 			params: ['$stateParams', 'MenuService', 
 			 function($stateParams, MenuService) {
-			 		return MenuService.getMenuForCategory($stateParams.category)
-			 		.then(function (response){
-			 			return response['data'];
-			 		});
+			 		return MenuService.getMenuForCategory($stateParams.category);
 			 }]
 		}
 	});
-
 }
-
-
-
-
 
 })();
