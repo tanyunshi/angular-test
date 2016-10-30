@@ -1,0 +1,89 @@
+<div id="register" class="container" ng-controller="RegisterController as reg">
+  <h1>Sign up</h1>
+
+  <form name="registerForm" novalidate>
+    <!-- First name -->
+    <div class="form-group row">
+      <label for="firstname" class="col-sm-2 col-form-label">First name</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" name="firstname" placeholder="First name"
+               required
+               minlength="2"
+               ng-maxlength="20" 
+               ng-model="reg.user.firstname">
+      </div>
+      <span
+          ng-if="(registerForm.firstname.$error.minlength || registerForm.firstname.$error.required) && registerForm.firstname.$touched">
+          First name must be at least 4 characters long
+      </span>
+      <span ng-if="registerForm.firstname.$error.maxlength && registerForm.firstname.$touched">
+          First name must not be longer than 10 characters
+      </span>
+    </div>
+
+    <!-- Last name -->
+    <div class="form-group row">
+      <label for="lastname" class="col-sm-2 col-form-label">Last name</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" name="lastname" placeholder="Last name"
+               required
+               minlength="2"
+               ng-maxlength="20" 
+               ng-model="reg.user.lastname">
+      </div>
+      <span
+          ng-if="(registerForm.lastname.$error.minlength || registerForm.lastname.$error.required) && registerForm.lastname.$touched">
+          Last name must be at least 4 characters long
+      </span>
+      <span ng-if="registerForm.lastname.$error.maxlength && registerForm.lastname.$touched">
+          Last name must not be longer than 10 characters
+      </span>
+    </div>
+
+    <!-- Phone -->
+    <div class="form-group row">
+      <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" name="phone" placeholder="Phone ###-###-####"
+               pattern="(\d{3})-(\d{3})-(\d{4})" 
+               ng-model="reg.user.phone">
+      </div>
+      <span ng-if="registerForm.phone.$invalid && registerForm.phone.$touched">Phone must be in the format ###-###-####.
+      </span>
+    </div>
+
+    <!-- Mail -->
+    <div class="form-group row">
+      <label for="email" class="col-sm-2 col-form-label">Mail</label>
+      <div class="col-sm-5">
+        <input type="email" class="form-control" name="email" placeholder="email"
+               required 
+               ng-model="reg.user.mail">
+      </div>
+      <span ng-if="registerForm.email.$invalid && registerForm.email.$touched">Must be a valid email address: handle@domain format.
+      </span>
+    </div>
+
+    <!-- Favorite menu number -->
+    <div class="form-group row">
+      <label for="favorite" class="col-sm-2 col-form-label">Favorite</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" name="favorite" placeholder="Favorite menu number (L5, L2...)"
+               required 
+               ng-model="reg.user.favorite">
+      </div>
+      <span ng-if="registerForm.favorite.$error.required && registerForm.favorite.$touched">Required
+      </span>
+      {{ reg.favorit_msg }}
+      <span ng-if="reg.favorite_invalid">No such menu number exists.</span>
+    </div>
+
+
+    <button class="btn btn-default" ng-disabled="registerForm.$invalid" ng-click="reg.submit()">
+    Submit</button>
+
+    <span ng-if="reg.registered" class="label label-success">Your information has been saved.</span>
+
+
+  </form>
+</div>

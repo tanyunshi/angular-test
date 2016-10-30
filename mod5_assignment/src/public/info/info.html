@@ -1,0 +1,31 @@
+<div id="register" class="container" ng-controller="InfoController as info">
+  <h1>My profile</h1>
+  <a ng-if="!info.user" ui-sref="public.register">Not Signed Up Yet. Sign up Now!</a>
+
+  <table ng-if="info.user" class="table"> 
+  	<tr>
+  		<th>First name</th>
+  		<td>{{ info.user.firstname }}</td>
+  	</tr>
+  	<tr>
+  		<th>Last name</th>
+  		<td>{{ info.user.lastname }}</td>
+  	</tr>
+  	<tr>
+  		<th>Phone</th>
+  		<td>{{ info.user.phone  || "-" }}</td>
+  	</tr>
+   	<tr>
+  		<th>Email</th>
+  		<td>{{ info.user.mail }}</td>
+  	</tr>
+  	<tr>
+  		<th>Favorite Food</th>
+  		<td>
+          <menu-item menu-item="info.favorite_menu"></menu-item>
+  		</td>
+  	</tr>
+
+  </table>
+  
+</div>
